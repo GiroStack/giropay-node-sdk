@@ -1,0 +1,71 @@
+{
+  "name": "@giropay/node-sdk",
+  "version": "1.0.0",
+  "description": "@giropay/node-sdk is a comprehensive Node.js SDK designed to simplify the integration with GiroPay’s powerful API. It provides developers with an easy-to-use interface for accessing core GiroPay services, such as initiating transactions, retrieving account balances, and more.",
+  "main": "./dist/index.js",
+  "scripts": {
+    "dev": "nodemon example/index.ts",
+    "prepublish": "cd lib && npm run build",
+    "pub": "npm publish --access public",
+    "unpublish": "npm unpublish @giropay/node-sdk --force",
+    "patch:version": "npm version patch",
+    "test": "jest",
+    "test:watch": "jest --watch",
+    "lint": "eslint --fix --ext .ts ./src",
+    "format:check": "prettier --check \"**/*.{ts,tsx,js,json,md}\"",
+    "format": "prettier --write .",
+    "postinstall": "husky install",
+    "pre-commit": "lint-staged",
+    "prepare": "husky"
+  },
+  "lint-staged": {
+    "**/*.{ts,tsx,js,json,md}": [
+      "eslint --fix --ext .ts ./src",
+      "prettier --write ."
+    ]
+  },
+  "directories": {
+    "example": "example",
+    "lib": "lib"
+  },
+  "exports": {
+    ".": {
+      "import": {
+        "types": "./dist/index.d.ts",
+        "default": "./dist/index.mjs"
+      },
+      "require": {
+        "types": "./dist/index.d.ts",
+        "default": "./dist/index.js"
+      }
+    }
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/GiroStack/giropay-node-sdk.git"
+  },
+  "keywords": [
+    "payments",
+    "wallets",
+    "fund",
+    "disbursements",
+    "giropay"
+  ],
+  "author": "GiroPay",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/GiroStack/giropay-node-sdk/issues"
+  },
+  "homepage": "https://github.com/GiroStack/giropay-node-sdk#readme",
+  "devDependencies": {
+    "@commitlint/cli": "^19.5.0",
+    "@commitlint/config-conventional": "^19.5.0",
+    "@types/node": "^22.7.8",
+    "@typescript-eslint/eslint-plugin": "^8.11.0",
+    "@typescript-eslint/parser": "^8.11.0",
+    "eslint": "^9.13.0",
+    "husky": "^9.1.6",
+    "lint-staged": "^15.2.10",
+    "typescript": "^5.6.3"
+  }
+}
