@@ -56,15 +56,15 @@ Updates the details of a specific account.
 
 Creates a new wallet.
 
-| Parameter               | Type   | Required | Description                                                         |
-| ----------------------- | ------ | -------- | ------------------------------------------------------------------- |
-| **accountName**         | string | Yes      | The name of the new wallet                                          |
-| **category**            | string | Yes      | The wallet category (e.g., **primary** or **secondary**)            |
-| **currency**            | string | Yes      | The currency for the new wallet. Value should be **NGN**            |
-| **emailAddress**        | string | No       | This should be provided only when wallet category is **secondary**  |
-| **mobile**              | object | No       | This should be provided only when wallet category is **secondary**. |
-| **mobile.phoneNumber ** | string | Yes      | The mobile number of the customer                                   |
-| ** mobile.isoCode**     | string | Yes      | Value should be **NG**                                              |
+| Parameter              | Type   | Required | Description                                                         |
+| ---------------------- | ------ | -------- | ------------------------------------------------------------------- |
+| **accountName**        | string | Yes      | The name of the new wallet                                          |
+| **category**           | string | Yes      | The wallet category (e.g., **primary** or **secondary**)            |
+| **currency**           | string | Yes      | The currency for the new wallet. Value should be **NGN**            |
+| **emailAddress**       | string | No       | This should be provided only when wallet category is **secondary**  |
+| **mobile**             | object | No       | This should be provided only when wallet category is **secondary**. |
+| **mobile.phoneNumber** | string | Yes      | The mobile number of the customer                                   |
+| **mobile.isoCode**     | string | Yes      | Value should be **NG**                                              |
 
 > The parameters should be passed inside a configuration object.
 
@@ -195,7 +195,7 @@ Fetches a list of supported banks.
 Initiates a transfer between own wallets.
 
 | Parameter           | Type   | Required | Description                                                                    |
-| ------------------- | ------ | -------- | ------------------------------------------------------------------------------ | --- |
+| ------------------- | ------ | -------- | ------------------------------------------------------------------------------ |
 | **source**          | string | Yes      | The source wallet **publicId**                                                 |
 | **sourceType**      | string | Yes      | The type of source (e.g., VirtualAccount)                                      |
 | **destination**     | string | Yes      | The destination wallet **publicId**                                            |
@@ -203,8 +203,8 @@ Initiates a transfer between own wallets.
 | **currency**        | string | Yes      | The currency for the transfer. Value should be **NGN**                         |
 | **amount**          | number | Yes      | The amount to transfer. Value should be in kobo. Minimum transfer is 100 naira |
 | **narration**       | string | Yes      | The narration for the transfer                                                 |
-| **reference**       | string | No       |                                                                                |
-| **nameEnquiryRef**  | string | No       |                                                                                |     |
+| **reference**       | string | No       | Optional reference for the transfer                                            |
+| **nameEnquiryRef**  | string | No       | Optional name enquiry reference                                                |
 
 > The parameters should be passed inside a configuration object.
 
@@ -215,16 +215,16 @@ Initiates a transfer between own wallets.
 Initiates a transfer to a bank account.
 
 | Parameter           | Type    | Required | Description                                                                    |
-| ------------------- | ------- | -------- | ------------------------------------------------------------------------------ | --- |
+| ------------------- | ------- | -------- | ------------------------------------------------------------------------------ |
 | **source**          | string  | Yes      | The source wallet **publicId**                                                 |
 | **accountNumber**   | string  | Yes      | The destination bank account number                                            |
 | **bankCode**        | string  | Yes      | The bank code of the destination bank                                          |
 | **currency**        | string  | Yes      | The currency for the transfer. Value should be **NGN**                         |
 | **amount**          | number  | Yes      | The amount to transfer. Value should be in kobo. Minimum transfer is 100 naira |
 | **narration**       | string  | Yes      | The narration for the transfer                                                 |
-| **reference**       | string  | No       |                                                                                |
-| **saveBeneficiary** | boolean | No       |                                                                                |
-| **metadata**        | object  | No       |                                                                                |     |
+| **reference**       | string  | No       | Optional reference for the transfer                                            |
+| **saveBeneficiary** | boolean | No       | Whether to save the beneficiary details                                        |
+| **metadata**        | object  | No       | Additional data to attach to the transaction                                   |
 
 > The parameters should be passed inside a configuration object.
 
