@@ -15,6 +15,7 @@ lerna-debug.log*
 .DS_Store
 .env
 .env.production
+.npmrc
 
 # Tests
 /coverage
