@@ -7,4 +7,5 @@ export enum Resources {
   TransitCollections = 'transit-accounts',
   DisposableCollections = 'collection-accounts',
   BankAccounts = 'bank-accounts',
+  
 }
