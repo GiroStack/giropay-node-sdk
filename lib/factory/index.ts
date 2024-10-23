@@ -79,7 +79,6 @@ export class GiroPay {
       const response = await this.api.get(`/${Resources.Accounts}`, {
         params: params || {},
       });
-      console.log('findAccounts::', response.data);
       return response.data;
     } catch (error) {
       this.handleApiError(error as AxiosError);
@@ -130,7 +129,6 @@ export class GiroPay {
       const response = await this.api.get(`/${Resources.VirtualAccount}`, {
         params: params || {},
       });
-      console.log('findWallets::', response.data);
       return response.data;
     } catch (error) {
       this.handleApiError(error as AxiosError);
@@ -310,7 +308,6 @@ export class GiroPay {
         `/${Resources.Transactions}/validate-account`,
         payload,
       );
-      console.log('validateBankAccount::', response.data);
       return response.data;
     } catch (error) {
       this.handleApiError(error as AxiosError);
@@ -325,7 +322,6 @@ export class GiroPay {
         `/${Resources.BankAccounts}`,
         payload,
       );
-      console.log('addBankAccount::', response.data);
       return response.data;
     } catch (error) {
       this.handleApiError(error as AxiosError);
