@@ -14,16 +14,7 @@
     "test": "jest",
     "test:watch": "jest --watch",
     "lint": "eslint --fix",
-    "format": "prettier --write .",
-    "postinstall": "husky init",
-    "pre-commit": "lint-staged",
-    "prepare": "husky"
-  },
-  "lint-staged": {
-    "**/*.{ts,tsx,js,json,md}": [
-      "eslint --fix",
-      "prettier --write ."
-    ]
+    "format": "prettier --write ."
   },
   "directories": {
     "example": "example",
@@ -69,7 +60,6 @@
     "eslint": "^8.55.0",
     "eslint-config-prettier": "^9.1.0",
     "eslint-plugin-prettier": "^5.0.1",
-    "husky": "^9.1.6",
     "jest": "^29.7.0",
     "jest-fetch-mock": "^3.0.3",
     "lint-staged": "^15.2.10",
