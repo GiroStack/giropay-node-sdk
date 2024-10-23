@@ -1,26 +1,27 @@
 {
   "name": "@giropay/node-sdk",
-  "version": "1.0.0",
+  "version": "0.1.0",
   "description": "@giropay/node-sdk is a comprehensive Node.js SDK designed to simplify the integration with GiroPay’s powerful API. It provides developers with an easy-to-use interface for accessing core GiroPay services, such as initiating transactions, retrieving account balances, and more.",
   "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
   "scripts": {
     "dev": "nodemon example/index.ts",
+    "build": "tsup lib/index.ts --format esm, cjs --dts",
     "prepublish": "cd lib && npm run build",
     "pub": "npm publish --access public",
     "unpublish": "npm unpublish @giropay/node-sdk --force",
     "patch:version": "npm version patch",
     "test": "jest",
     "test:watch": "jest --watch",
-    "lint": "eslint --fix --ext .ts ./src",
-    "format:check": "prettier --check \"**/*.{ts,tsx,js,json,md}\"",
+    "lint": "eslint --fix",
     "format": "prettier --write .",
-    "postinstall": "husky install",
+    "postinstall": "husky init",
     "pre-commit": "lint-staged",
     "prepare": "husky"
   },
   "lint-staged": {
     "**/*.{ts,tsx,js,json,md}": [
-      "eslint --fix --ext .ts ./src",
+      "eslint --fix",
       "prettier --write ."
     ]
   },
@@ -60,12 +61,26 @@
   "devDependencies": {
     "@commitlint/cli": "^19.5.0",
     "@commitlint/config-conventional": "^19.5.0",
-    "@types/node": "^22.7.8",
-    "@typescript-eslint/eslint-plugin": "^8.11.0",
-    "@typescript-eslint/parser": "^8.11.0",
-    "eslint": "^9.13.0",
+    "@types/jest": "^29.5.11",
+    "@types/lodash": "^4.14.202",
+    "@types/node": "^20.10.3",
+    "@typescript-eslint/eslint-plugin": "^6.13.2",
+    "@typescript-eslint/parser": "^6.13.2",
+    "eslint": "^8.55.0",
+    "eslint-config-prettier": "^9.1.0",
+    "eslint-plugin-prettier": "^5.0.1",
     "husky": "^9.1.6",
+    "jest": "^29.7.0",
+    "jest-fetch-mock": "^3.0.3",
     "lint-staged": "^15.2.10",
+    "nodemon": "^3.0.2",
+    "prettier": "^3.1.0",
+    "ts-jest": "^29.1.1",
+    "ts-node": "^10.9.1",
+    "tsup": "^8.0.1",
     "typescript": "^5.6.3"
+  },
+  "dependencies": {
+    "axios": "^1.7.7"
   }
 }
