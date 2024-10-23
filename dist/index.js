@@ -1,41 +1,3 @@
-var __create = Object.create;
-var __defProp = Object.defineProperty;
-var __getOwnPropDesc = Object.getOwnPropertyDescriptor;
-var __getOwnPropNames = Object.getOwnPropertyNames;
-var __getProtoOf = Object.getPrototypeOf;
-var __hasOwnProp = Object.prototype.hasOwnProperty;
-var __export = (target, all) => {
-  for (var name in all)
-    __defProp(target, name, { get: all[name], enumerable: true });
-};
-var __copyProps = (to, from, except, desc) => {
-  if (from && typeof from === "object" || typeof from === "function") {
-    for (let key of __getOwnPropNames(from))
-      if (!__hasOwnProp.call(to, key) && key !== except)
-        __defProp(to, key, { get: () => from[key], enumerable: !(desc = __getOwnPropDesc(from, key)) || desc.enumerable });
-  }
-  return to;
-};
-var __toESM = (mod, isNodeMode, target) => (target = mod != null ? __create(__getProtoOf(mod)) : {}, __copyProps(
-  // If the importer is in node compatibility mode or this is not an ESM
-  // file that has been converted to a CommonJS file using a Babel-
-  // compatible transform (i.e. "__esModule" has not been set), then set
-  // "default" to the CommonJS "module.exports" for node compatibility.
-  isNodeMode || !mod || !mod.__esModule ? __defProp(target, "default", { value: mod, enumerable: true }) : target,
-  mod
-));
-var __toCommonJS = (mod) => __copyProps(__defProp({}, "__esModule", { value: true }), mod);
-
-// lib/index.ts
-var lib_exports = {};
-__export(lib_exports, {
-  GiroPaySDKError: () => GiroPaySDKError,
-  Resources: () => Resources,
-  baseURL: () => baseURL,
-  initializeGiroPaySDK: () => initializeGiroPaySDK
-});
-module.exports = __toCommonJS(lib_exports);
-
 // lib/error/index.ts
 var GiroPaySDKError = class extends Error {
   constructor(message, statusCode, responseError) {
@@ -60,7 +22,7 @@ var Resources = /* @__PURE__ */ ((Resources2) => {
 })(Resources || {});
 
 // lib/factory/index.ts
-var import_axios = __toESM(require("axios"), 1);
+import axios from "axios";
 var GiroPay = class {
   constructor(apiKey) {
     if (!apiKey || typeof apiKey !== "string" || apiKey.trim() === "") {
@@ -68,7 +30,7 @@ var GiroPay = class {
         "Invalid API key: API key must be a non-empty string"
       );
     }
-    this.api = import_axios.default.create({
+    this.api = axios.create({
       baseURL,
       headers: {
         "x-giro-key": apiKey,
@@ -96,7 +58,6 @@ var GiroPay = class {
       const response = await this.api.get(`/${"accounts" /* Accounts */}`, {
         params: params || {}
       });
-      console.log("findAccounts::", response.data);
       return response.data;
     } catch (error) {
       this.handleApiError(error);
@@ -139,7 +100,6 @@ var GiroPay = class {
       const response = await this.api.get(`/${"virtual-accounts" /* VirtualAccount */}`, {
         params: params || {}
       });
-      console.log("findWallets::", response.data);
       return response.data;
     } catch (error) {
       this.handleApiError(error);
@@ -285,7 +245,6 @@ var GiroPay = class {
         `/${"transactions" /* Transactions */}/validate-account`,
         payload
       );
-      console.log("validateBankAccount::", response.data);
       return response.data;
     } catch (error) {
       this.handleApiError(error);
@@ -297,7 +256,79 @@ var GiroPay = class {
         `/${"bank-accounts" /* BankAccounts */}`,
         payload
       );
-      console.log("addBankAccount::", response.data);
+      return response.data;
+    } catch (error) {
+      this.handleApiError(error);
+    }
+  }
+};
+function initializeGiroPaySDK(apiKey) {
+  if (!(this instanceof GiroPay)) {
+    return new GiroPay(apiKey);
+  }
+}
+export {
+  GiroPaySDKError,
+  Resources,
+  baseURL,
+  initializeGiroPaySDK
+};
+ansactions */}/transfer`,
+        payload
+      );
+      return response.data;
+    } catch (error) {
+      this.handleApiError(error);
+    }
+  }
+  async initiateBankTransfer(payload) {
+    try {
+      const response = await this.api.post(
+        `/${"transactions" /* Transactions */}/bank-transfer`,
+        payload
+      );
+      return response.data;
+    } catch (error) {
+      this.handleApiError(error);
+    }
+  }
+  async findBankAccounts(params) {
+    try {
+      const response = await this.api.get(`/${"bank-accounts" /* BankAccounts */}`, {
+        params: params || {}
+      });
+      return response.data;
+    } catch (error) {
+      this.handleApiError(error);
+    }
+  }
+  async getOneBankAccount(bankAccountId) {
+    try {
+      const response = await this.api.get(
+        `/${"bank-accounts" /* BankAccounts */}/${bankAccountId}`
+      );
+      return response.data;
+    } catch (error) {
+      this.handleApiError(error);
+    }
+  }
+  async validateBankAccount(payload) {
+    try {
+      const response = await this.api.post(
+        `/${"transactions" /* Transactions */}/validate-account`,
+        payload
+      );
+      return response.data;
+    } catch (error) {
+      this.handleApiError(error);
+    }
+  }
+  async addBankAccount(payload) {
+    try {
+      const response = await this.api.post(
+        `/${"bank-accounts" /* BankAccounts */}`,
+        payload
+      );
       return response.data;
     } catch (error) {
       this.handleApiError(error);
